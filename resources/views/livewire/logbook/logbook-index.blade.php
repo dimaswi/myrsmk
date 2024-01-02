@@ -77,13 +77,13 @@
                                     <td class="px-4 py-3" style="width: 25%">{{ $value->nama }}</td>
                                     <td class="px-4 py-3" style="width: 25%">{{ $value->unit }}</td>
                                     <td class="px-4 py-3" style="width: 4%">
-                                        {{ round(($nilai[0]->tugas )) }}%
+                                        {{ (($nilai[0]->tugas / $total_jam) * 100) }}%
                                     </td>
                                     <td class="px-4 py-3" style="width: 4%">
-                                        {{ round(($nilai[0]->bukan_tugas )) }}%
+                                        {{ (($nilai[0]->bukan_tugas / $total_jam) * 100) }}%
                                     </td>
                                     <td class="px-4 py-3" style="width: 4%">
-                                        {{ round(($nilai[0]->tugas_tambahan )) }}%
+                                        {{ (($nilai[0]->tugas_tambahan / $total_jam) * 100) }}%
                                     </td>
                                     <td class="px-4 py-3" style="width: 15%">
                                         <button wire:click="showDetails({{ $value->uid }})"
