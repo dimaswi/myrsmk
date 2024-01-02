@@ -47,6 +47,7 @@ class Tersedia extends Component
                 'stok_masuk' => $this->jumlah,
                 'stok_awal' => $this->stok_awal,
                 'total_stok' => $this->total_stok,
+                'stok_keluar' => $this->stok_keluar,
                 'persentase' => (($this->total_stok + $this->jumlah) / $this->stok_awal) * 100,
             ]);
 
