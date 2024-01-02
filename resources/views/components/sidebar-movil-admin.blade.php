@@ -122,7 +122,7 @@
                 </li>
             </ul>
         @endcan
-        @can('manage_logistik')
+        @can('manage_permintaan')
             <ul>
                 <li x-data="{ menuLogistik: false }" class="relative px-6 py-3  text-gray-800 dark:text-gray-100">
                     @if (request()->routeIs('logistik'))
