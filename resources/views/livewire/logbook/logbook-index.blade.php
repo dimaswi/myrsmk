@@ -60,30 +60,20 @@
                             @forelse ($logbooks as $key => $value)
                             @php
                                 $nilai = \App\Models\Logbook::where('uid', $value->uid)->select(DB::raw('SUM(tugas) as tugas'),DB::raw('SUM(bukan_tugas) as bukan_tugas'),DB::raw('SUM(tugas_tambahan) as tugas_tambahan'))->get();
-                                $shift = \App\Models\Logbook::where('uid', $value->uid)->first();
-
-                                if ($shift == 'CS JAGA' ) {
-                                    $total_jam = 44;
-                                } else if ($shift == 'Malam') {
-                                    $total_jam = 40;
-                                }else  if ($shift == 'SECURITY MALAM') {
-                                    $total_jam = 56;
-                                }else{
-                                    $total_jam = 28;
-                                }
+                                $shift = \App\Models\Logbook::where('uid', $value->uid)->get();
                             @endphp
                                 <tr class="border-b dark:border-gray-700">
                                     <td class="px-4 py-3" style="width: 18%">{{ $value->created_at }}</td>
                                     <td class="px-4 py-3" style="width: 25%">{{ $value->nama }}</td>
                                     <td class="px-4 py-3" style="width: 25%">{{ $value->unit }}</td>
                                     <td class="px-4 py-3" style="width: 4%">
-                                        {{ round(($nilai[0]->tugas)) }}%
+                                        {{ round(($nilai[0]->tugas / $shift->count()) * 100) }}%
                                     </td>
                                     <td class="px-4 py-3" style="width: 4%">
-                                        {{ round(($nilai[0]->bukan_tugas)) }}%
+                                        {{ round(($nilai[0]->bukan_tugas / $shift->count()) * 100) }}%
                                     </td>
                                     <td class="px-4 py-3" style="width: 4%">
-                                        {{ round(($nilai[0]->tugas_tambahan)) }}%
+                                        {{ round(($nilai[0]->tugas_tambahan / $shift->count()) * 100) }}%
                                     </td>
                                     <td class="px-4 py-3" style="width: 15%">
                                         <button wire:click="showDetails({{ $value->uid }})"
