@@ -9,6 +9,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\DB;
 
 class LogbookIndex extends Component
 {
@@ -30,6 +31,7 @@ class LogbookIndex extends Component
 
     public function showDetails($uid)
     {
+
         return redirect()->to("/logbook/detail/$uid");
     }
 
