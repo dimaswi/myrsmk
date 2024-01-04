@@ -120,7 +120,6 @@
                             <th scope="col" class="px-4 py-3">Nomor</th>
                             <th scope="col" class="px-4 py-3">Unit</th>
                             <th scope="col" class="px-4 py-3">Tanggal</th>
-                            <th scope="col" class="px-4 py-3">Harga</th>
                             <th scope="col" class="px-4 py-3"></th>
                         </tr>
                     </thead>
@@ -142,10 +141,9 @@
                                     </td>
                                     <td class="px-4 py-3" style="width: 35%">{{ $value->unit }}</td>
                                     <td class="px-4 py-3" style="width: 10%">{{ $value->tanggal }}</td>
-                                    <td class="px-4 py-3" style="width: 15%">Rp. {{ number_format($value->total) }}
                                     </td>
                                     <td class="px-4 py-3" style="width: 20%">
-                                        @if ($value->total >= 500000)
+                                        @if ($value->harga >= 500000)
                                             @if ($value->surat == null)
                                                 <button
                                                     wire:click.prevent="isModalOpen('{{ $value->nomor_permintaan }}')"

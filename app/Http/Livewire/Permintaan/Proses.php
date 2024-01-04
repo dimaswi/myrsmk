@@ -38,7 +38,7 @@ class Proses extends Component
     {
         $nama_unit = Unit::where('id', auth()->user()->unit)->first();
         return view('livewire.permintaan.proses', [
-            'process' => Permintaan::where('unit', $nama_unit->nama)->where('status', 0)->select([DB::raw("SUM(jumlah * harga) as total"), 'nomor_permintaan', 'tanggal', 'unit','surat'])->groupBy('nomor_permintaan')->search($this->search)->paginate($this->perPage),
+            'process' => Permintaan::where('unit', $nama_unit->nama)->where('status', 0)->whereRaw('harga = (select max(`harga`) from tb_permintaan)')->groupBy('nomor_permintaan')->search($this->search)->paginate($this->perPage),
             'process_logistiks' => Permintaan::where('status', 0)->select([DB::raw("SUM(jumlah * harga) as total"), 'nomor_permintaan', 'tanggal', 'unit','surat'])->groupBy('nomor_permintaan')->search($this->search)->paginate($this->perPage),
         ]);
     }
