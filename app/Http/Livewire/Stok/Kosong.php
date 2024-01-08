@@ -21,7 +21,7 @@ class Kosong extends Component
     public function render()
     {
         return view('livewire.stok.kosong', [
-            'stoks' => Stok::where('persentase', 0)->search($this->search)->paginate($this->perPage),
+            'stoks' => Stok::where('persentase', '<=', 0)->search($this->search)->paginate($this->perPage),
         ]);
     }
 
