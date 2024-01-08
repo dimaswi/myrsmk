@@ -32,7 +32,7 @@ class Logistik extends Component
                 'stoks' => Stok::search($this->search)->paginate($this->perPage),
                 'tersedias' => Stok::where('persentase', '>', 50)->get(),
                 'kurangs' => Stok::where('persentase', '<=', 50)->where('persentase', '>=', 1)->get(),
-                'kosongs' => Stok::where('persentase', 0)->get(),
+                'kosongs' => Stok::where('persentase', '<=', 0)->get(),
             ]);
         }else {
             return view('livewire.stok.logistik', [
